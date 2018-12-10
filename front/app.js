@@ -1,11 +1,11 @@
 const http = require('http');
-const appBuilder = require("./struct.js");
+const builder = require('./builder/appBuilder')
 
 const server = http.createServer(function (req, res) {
     res.writeHead(200, {
         "Content-Type": "text/html"
     });
-    res.write(appBuilder.renderApp);
+    builder.view(res);
     res.end();
 });
 server.listen(7357, '0.0.0.0');
