@@ -1,15 +1,21 @@
-var fs = require("fs");
-const values = require('../assets/values');
-const imageURL = require('../assets/img');
+const fs = require("fs");
+//service
+const _tradService = require('../services/translate.service');
+const _toolService = require('../services/tool.service');
 
-function mergeValues(content) {
-    const datas = values.getValues();
-    const imgs = imageURL.getImagesURL()
-    for (var key in datas) { // Text datas
-        content = content.replace("{{" + key + "}}", datas[key])
+const keyWords = require('../assets/trads/default');
+
+const signature = {
+    'poster': 'Loulou',
+    'appVersion': '0.0.2'
+}
+
+function mergeValues(content, language = null) {
+    for (let key in keyWords.getValues()) {
+        content = _tradService.translate(content, key, language)
     }
-    for (var img in imgs) { // Images
-        content = content.replace("{{" + img + "}}", imgs[img])
+    for (let key in signature) { // Signatures
+        content = _toolService.recursiveReplace(content, key, signature[key])
     }
     return content;
 }
@@ -17,7 +23,9 @@ function mergeValues(content) {
 function view(res) {
     const head = fs.readFileSync('./views/header.html', 'utf8');
     const body = fs.readFileSync('./views/body.html', 'utf8');
-    const app = mergeValues(head + body);
+    const scripts = fs.readFileSync('./views/scripts.html', 'utf8');
+    const style = fs.readFileSync('./views/style.css.html', 'utf8');
+    const app = mergeValues(head + body + scripts + style);
     res.write(app);
 }
 
