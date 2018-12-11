@@ -20,4 +20,11 @@ function translate(content, key, language) {
     return content = _toolService.recursiveReplace(content, key, trad)
 }
 
-module.exports.translate = translate;
+function translatePage(page, language) {
+    for (let key in df.getValues()) {
+        page = translate(page, key, language)
+    }
+    return page;
+}
+
+module.exports.translatePage = translatePage;

@@ -1,9 +1,7 @@
 const fs = require("fs");
 //service
-const _tradService = require('../services/translate.service');
+const _translateService = require('../services/translate.service');
 const _toolService = require('../services/tool.service');
-
-const keyWords = require('../assets/trads/default');
 
 const signature = {
     'poster': 'Loulou',
@@ -11,9 +9,7 @@ const signature = {
 }
 
 function mergeValues(content, language = null) {
-    for (let key in keyWords.getValues()) {
-        content = _tradService.translate(content, key, language)
-    }
+    content = _translateService.translatePage(content, language)
     for (let key in signature) { // Signatures
         content = _toolService.recursiveReplace(content, key, signature[key])
     }
