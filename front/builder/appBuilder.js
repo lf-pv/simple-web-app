@@ -1,4 +1,5 @@
 const fs = require("fs");
+const headerView = require('../views/header/header');
 const bodyView = require('../views/body/body');
 //service
 const _translateService = require('../services/translate.service');
@@ -17,8 +18,8 @@ const mergeValues = (content, language = null) => {
 		return content;
 }
 
-const view = (res) => {	console.log('trans : ', _translateService.translatePage('{{ text }}', null))
-		const head = fs.readFileSync('./views/header.html', 'utf8');
+const view = (res) => {
+		const head = headerView.render();
 		const body = bodyView.render();
 		const scripts = fs.readFileSync('./views/scripts.html', 'utf8');
 		const style = fs.readFileSync('./views/style.css.html', 'utf8');
