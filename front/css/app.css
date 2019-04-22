@@ -26,3 +26,10 @@ footer{
 .body_content {
 		margin-left: 10px;
 }
+
+.button {
+	width: 50%;
+	min-height: 40px;
+	border-radius: 12px;
+	background-color: #008cba;
+}
