@@ -3,7 +3,7 @@ const fr = require('../assets/trads/fr');
 const df = require('../assets/trads/default');
 const _toolService = require('../services/tool.service');
 
-function translate(content, key, language) {
+const translate = (content, key, language) => {
     let trads;
     const defaultTrad = df.getValues();
     switch (language) {
@@ -20,7 +20,7 @@ function translate(content, key, language) {
     return content = _toolService.recursiveReplace(content, key, trad)
 }
 
-function translatePage(page, language) {
+const translatePage = (page, language) => {
     for (let key in df.getValues()) {
         page = translate(page, key, language)
     }

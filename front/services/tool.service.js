@@ -1,4 +1,4 @@
-function recursiveReplace(text, key, value) {
+const recursiveReplace = (text, key, value) => {
     return text.replace(new RegExp('{{' + key + '}}', 'g'), value)
 }
 

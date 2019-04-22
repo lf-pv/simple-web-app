@@ -8,7 +8,7 @@ const signature = {
     'appVersion': '0.0.2'
 }
 
-function mergeValues(content, language = null) {
+const mergeValues = (content, language = null) => {
     content = _translateService.translatePage(content, language)
     for (let key in signature) { // Signatures
         content = _toolService.recursiveReplace(content, key, signature[key])
@@ -16,7 +16,7 @@ function mergeValues(content, language = null) {
     return content;
 }
 
-function view(res) {
+const view = (res) => {
     const head = fs.readFileSync('./views/header.html', 'utf8');
     const body = fs.readFileSync('./views/body.html', 'utf8');
     const scripts = fs.readFileSync('./views/scripts.html', 'utf8');

@@ -1,4 +1,4 @@
-function getValues() {
+const getValues = () => {
     return {
         'title': 'That\'s the lab in english',
     }
