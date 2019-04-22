@@ -1,6 +1,6 @@
 const getValues = () => {
-    return {
-        'title': 'That\'s the lab in english',
-    }
+		return {
+				'title': 'That\'s the lab in english',
+		}
 }
 module.exports.getValues = getValues;
