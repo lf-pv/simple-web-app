@@ -1,5 +1,6 @@
 const express = require('express');
-const bodyParser = require('body-parser')
+const env = require('./env/local');
+const bodyParser = require('body-parser');
 const applisten = express();
 const answerModule = require('./modules/answer.js');
 
@@ -13,8 +14,8 @@ applisten.use(function (req, res, next) {
 });
 applisten.use(bodyParser.json());
 
-applisten.listen(1337, '0.0.0.0');
-console.log('listening (1337) ...');
+applisten.listen(env.port, '0.0.0.0');
+console.log(`listening (${env.port}) ...`);
 
 // respond with "Coucou" 
 applisten.put('/', function (req, res) {

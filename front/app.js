@@ -1,5 +1,6 @@
 const http = require('http');
-const builder = require('./builder/appBuilder')
+const env = require('./env/local');
+const builder = require('./builder/appBuilder');
 
 const server = http.createServer((req, res) => {
 		res.writeHead(200, {
@@ -8,5 +9,5 @@ const server = http.createServer((req, res) => {
 		builder.view(res);
 		res.end();
 });
-server.listen(7357, '0.0.0.0');
-console.log('listening (7357) ...');
+server.listen(env.front, '0.0.0.0');
+console.log(`listening (${env.front}) ...`);
