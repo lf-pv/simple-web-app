@@ -1,0 +1,15 @@
+{
+  "name": "simple-web-app_front",
+  "version": "0.0.2",
+  "scripts": {
+    "run": "nodemon app.js",
+    "debug": "DEBUG=app nodemon app.js"
+  },
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "chalk": "^2.4.2",
+    "express": "^4.16.4",
+    "jquery": "^3.4.1"
+  }
+}

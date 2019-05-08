@@ -23,8 +23,7 @@ const view = (res) => {
 		const header = headerView.render();
 		const body = bodyView.render();
 		const coucou = scripts.coucou();
-		const style = fs.readFileSync('./views/style.css.html', 'utf8');
-		const app = mergeValues(header + body + coucou + style);
+		const app = mergeValues(header + body + coucou);
 		res.write(app);
 }
 
