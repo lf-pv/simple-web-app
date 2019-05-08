@@ -9,11 +9,11 @@ const signature = {
 }
 
 const mergeValues = (content, language = null) => {
-		content = _translateService.translatePage(content, language)
-		for (let key in signature) { // Signatures
-				content = _toolService.recursiveReplace(content, key, signature[key])
-		}
-		return content;
+	content = _translateService.translatePage(content, language)
+	for (let key in signature) { // Signatures
+		content = _toolService.recursiveReplace(content, key, signature[key])
+	}
+	return content;
 }
 
 const headerBuilder = () => {
