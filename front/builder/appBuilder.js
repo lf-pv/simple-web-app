@@ -28,16 +28,8 @@ const bodyBuilder = () => {
 	return _toolService.includeComponent(subed, '<footer></footer>', footer);
 }
 
-const scriptsBuilder = () => {
-	return fs.readFileSync('./views/scripts/coucou.html', 'utf8');
-}
-
 const view = (res) => {
-	const header = headerBuilder();
-	const body = bodyBuilder();
-	const coucou = scriptsBuilder();
-	const app = mergeValues(header + body + coucou);
-	res.write(app);
+	res.write(mergeValues(headerBuilder() + bodyBuilder()));
 }
 module.exports.view = view;
 module.exports.mergeValues = mergeValues;
