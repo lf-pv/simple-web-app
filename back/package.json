@@ -1,0 +1,11 @@
+{
+  "name": "simple-web-app_back",
+  "version": "0.0.2",
+  "scripts": {
+    "run": "nodemon back.js",
+    "debug": "DEBUG=back nodemon back.js"
+  },
+  "private": true,
+  "dependencies": {
+  }
+}

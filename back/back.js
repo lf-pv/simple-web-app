@@ -1,8 +1,9 @@
 const express = require('express');
 const env = require('./env/local');
 const bodyParser = require('body-parser');
-const applisten = express();
 const answerModule = require('./modules/answer.js');
+
+const applisten = express();
 
 applisten.use(function (req, res, next) {
 	// Website you wish to allow to connect
