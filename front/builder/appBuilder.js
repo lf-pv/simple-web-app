@@ -1,7 +1,4 @@
 const fs = require("fs");
-const headerView = require('../views/header/header');
-const bodyView = require('../views/body/body');
-const scripts = require('../views/scripts/scripts');
 //service
 const _translateService = require('../services/translate.service');
 const _toolService = require('../services/tool.service');
@@ -19,13 +16,28 @@ const mergeValues = (content, language = null) => {
 		return content;
 }
 
-const view = (res) => {
-		const header = headerView.render();
-		const body = bodyView.render();
-		const coucou = scripts.coucou();
-		const app = mergeValues(header + body + coucou);
-		res.write(app);
+const headerBuilder = () => {
+	return fs.readFileSync('./views/header/header.html', 'utf8');
 }
 
+const bodyBuilder = () => {
+	const body = fs.readFileSync('./views/body/body.html', 'utf8');
+	const sub = fs.readFileSync('./views/shared/sample.html', 'utf8');
+	const footer = fs.readFileSync('./views/body/footer.html', 'utf8');
+	const subed = _toolService.includeComponent(body, '<sub></sub>', sub);
+	return _toolService.includeComponent(subed, '<footer></footer>', footer);
+}
+
+const scriptsBuilder = () => {
+	return fs.readFileSync('./views/scripts/coucou.html', 'utf8');
+}
+
+const view = (res) => {
+	const header = headerBuilder();
+	const body = bodyBuilder();
+	const coucou = scriptsBuilder();
+	const app = mergeValues(header + body + coucou);
+	res.write(app);
+}
 module.exports.view = view;
 module.exports.mergeValues = mergeValues;
