@@ -3,12 +3,14 @@ const fs = require("fs");
 const _translateService = require('../services/translate.service');
 const _toolService = require('../services/tool.service');
 
-const signature = {
-	'poster': 'Loulou',
-	'appVersion': '0.0.2'
-}
+const poster = 'Loulou';
+const version = '0.1.0'
 
 const addSignatures = (content) => {
+	const signature = {
+		poster,
+		'appVersion': version
+	}
 	for (let key in signature) { // Signatures
 		content = _toolService.recursiveReplace(content, key, signature[key])
 	}
