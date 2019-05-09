@@ -1,15 +1,14 @@
 const fs = require("fs");
-//service
+// services
 const _translateService = require('../services/translate.service');
 const _toolService = require('../services/tool.service');
 
 const signature = {
-		'poster': 'Loulou',
-		'appVersion': '0.0.2'
+	'poster': 'Loulou',
+	'appVersion': '0.0.2'
 }
 
-const mergeValues = (content, language = null) => {
-	content = _translateService.translatePage(content, language)
+const mergeValues = (content) => {
 	for (let key in signature) { // Signatures
 		content = _toolService.recursiveReplace(content, key, signature[key])
 	}
@@ -46,7 +45,8 @@ const addScripts = (body) => {
 	return _toolService.includeComponent(body, '<app-script></app-script>', sc);
 }
 
-const view = (res) => {
-	res.write(mergeValues(headerBuilder() + bodyBuilder()));
+const view = (res, language = null) => {
+	const app = mergeValues(headerBuilder() + bodyBuilder());
+	res.write(_translateService.translatePage(app, language));
 }
 module.exports = view;

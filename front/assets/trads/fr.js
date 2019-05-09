@@ -3,4 +3,4 @@ const getValues = () => {
 		'title': 'C\'est le lab en français'
 	}
 }
-module.exports.getValues = getValues;
+module.exports = getValues;

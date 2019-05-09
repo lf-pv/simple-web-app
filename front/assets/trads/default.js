@@ -7,4 +7,4 @@ const getValues = () => {
 		'version': 'Version'
 	}
 }
-module.exports.getValues = getValues;
+module.exports = getValues;

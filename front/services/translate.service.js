@@ -5,25 +5,31 @@ const _toolService = require('../services/tool.service');
 
 const translate = (content, key, language) => {
 	let trads;
-	const defaultTrad = df.getValues();
+	const defaultTrad = df();
 	switch (language) {
 		case 'en':
-			trads = en.getValues();
+			trads = en();
 			break;
 		case 'fr':
-			trads = fr.getValues();
+			trads = fr();
 			break;
 		default:
-			trads = df;
+			trads = df();
 	}
-	const trad = trads[key] ? trads[key] : defaultTrad[key];
+	
+	const trad = 
+		trads[key] ? 
+		trads[key] : 
+		defaultTrad[key] ? defaultTrad[key] : key;
 	return content = _toolService.recursiveReplace(content, key, trad)
 }
 
 const translatePage = (page, language) => {
-	for (let key in df.getValues()) {
+	const regex = /[{]+\s[A-Za-z0-9]+\s[}]+/gm
+	const keys = page.match(regex).map((key) => key.split(' ')[1]);
+	keys.forEach((key) => {
 		page = translate(page, key, language)
-	}
+	});
 	return page;
 }
 
