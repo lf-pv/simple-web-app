@@ -1,2 +1,2 @@
-const env = require('./environments');
-module.exports = env.local
+const env = require("./environments");
+module.exports = env.local;

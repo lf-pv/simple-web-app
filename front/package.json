@@ -1,10 +1,13 @@
 {
   "name": "simple-web-app_front",
-  "version": "0.0.2",
+  "version": "0.1.0",
+  "description": "",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
-    "debug": "DEBUG=app nodemon app.js"
+    "start": "nodemon app.ts",
+    "debug": "DEBUG=app nodemon app.ts"
   },
+  "author": "Loulou",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
