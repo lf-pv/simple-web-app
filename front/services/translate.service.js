@@ -25,7 +25,7 @@ const translate = (content, key, language) => {
 }
 
 const translatePage = (page, language) => {
-	const regex = /[{]+\s[A-Za-z0-9]+\s[}]+/gm
+	const regex = /[{]+\s[A-Za-z0-9]+\s[}]+/g
 	const keys = page.match(regex).map((key) => key.split(' ')[1]);
 	keys.forEach((key) => {
 		page = translate(page, key, language)
