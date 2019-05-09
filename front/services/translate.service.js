@@ -1,11 +1,11 @@
 const en = require("../assets/trads/en");
 const fr = require("../assets/trads/fr");
-const df = require("../assets/trads/default");
+const cu = require("../assets/trads/custom");
 const _toolService = require("../services/tool.service");
 
 const translate = (content, key, language) => {
 	let trads;
-	const defaultTrad = df();
+	const defaultTrad = cu();
 	switch (language) {
 		case "en":
 			trads = en();
@@ -14,7 +14,7 @@ const translate = (content, key, language) => {
 			trads = fr();
 			break;
 		default:
-			trads = df();
+			trads = cu();
 	}
 
 	const trad = trads[key]
