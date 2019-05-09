@@ -4,7 +4,8 @@ const getValues = () => {
 		'text': 'Don\'t panic',
 		'buttonText': 'Call',
 		'posted': 'Posted by',
-		'version': 'Version'
+		'version': 'Version',
+		'subComponent': 'Hello, I\'m a simple sub-component'
 	}
 }
 module.exports = getValues;
