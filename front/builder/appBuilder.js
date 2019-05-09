@@ -20,19 +20,21 @@ const addSignatures = content => {
 
 const addCss = header => {
   const cssFiles = fs.readdirSync("./public/css");
-  let css = "";
-  cssFiles.forEach(f => {
-    css += `<link rel="stylesheet" type="text/css" href="/css/${f}" />\n`;
-  });
+  const template = '<link rel="stylesheet" type="text/css"';
+  const css = cssFiles.reduce(
+    (acc, el) => acc + `${template} href="/css/${el}" />\n`,
+    ""
+  );
   return _toolService.includeComponent(header, "<css></css>", css);
 };
 
 const addScripts = body => {
   const scripts = fs.readdirSync("./public/js");
-  let sc = "";
-  scripts.forEach(f => {
-    sc += `<script rel="stylesheet" type="text/javascript" src="/js/${f}"></script>\n`;
-  });
+  const template = '<script type="text/javascript"';
+  const sc = scripts.reduce(
+    (acc, el) => acc + `${template} src="/js/${el}"></script>\n`,
+    ""
+  );
   return _toolService.includeComponent(body, "<script></script>", sc);
 };
 

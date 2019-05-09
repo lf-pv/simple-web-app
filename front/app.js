@@ -32,5 +32,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(env.front, "0.0.0.0", () => {
-  console.log(`listening (${chalk.green(env.front)}) ...`);
+  console.log(`listening (${chalk.blue(env.front)}) ...`);
 });
