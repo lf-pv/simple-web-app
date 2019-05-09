@@ -1,11 +1,15 @@
 {
   "name": "simple-web-app_back",
-  "version": "0.0.2",
+  "version": "0.1.0",
+  "description": "",
+  "main": "app.js",
   "scripts": {
     "run": "nodemon back.js",
     "debug": "DEBUG=back nodemon back.js"
   },
+  "author": "Loulou",
   "private": true,
   "dependencies": {
+    "express": "^4.16.4"
   }
 }
