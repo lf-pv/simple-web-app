@@ -21,10 +21,11 @@ app.use(
 	express.static(path.join(__dirname, "node_modules/bootstrap/dist/js"))
 );
 
-app.get("/", (req, res) => {
+app.get("/:language", (req, res) => {
 	try {
+		const lg = req.params.language;
 		res.writeHead(200, { "Content-Type": "text/html" });
-		builder(res);
+		builder(res, lg);
 		res.end();
 	} catch (e) {
 		console.log(chalk.red(e));
