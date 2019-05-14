@@ -11,11 +11,14 @@
         />
       </div>
     </div>
-    <div class="container">
-      <div class="jumbotron">
-        <app-sample></app-sample>
+    <repeat #loop>
+      <div class="container">
+        <div class="jumbotron">
+          <app-sample></app-sample>
+        </div>
       </div>
-    </div>
+    </repeat>
+    <repeat #2>aa</repeat>
   </div>
   <app-footer></app-footer>
 </body>
