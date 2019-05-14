@@ -11,3 +11,5 @@ A really simple web application, generated with nodejs
 		add the view in /views/components folder
 		name the balise in the parent this way : <app-example></app-example> 
 		it should be automaticaly integrated
+	-Add a repeat : add <repeat #ex>...</repeat> where #ex is a number or the name of a param attribute in the builder
+	-Add an if : add <if #ex></if> where #ex is a true, false or the name of a param attribute in the builder
