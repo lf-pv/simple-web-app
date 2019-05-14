@@ -1,4 +1,4 @@
-const getValues = () => {
+module.exports = () => {
 	return {
 		title: "C'est le lab",
 		text: "Don't panic",
@@ -8,4 +8,3 @@ const getValues = () => {
 		subComponent: "Hello, I'm a simple sub-component"
 	};
 };
-module.exports = getValues;

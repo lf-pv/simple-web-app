@@ -29,13 +29,13 @@ const translate = (content, key, language) => {
 	return (content = _toolService.recursiveReplace(content, key, trad));
 };
 
-const translatePage = (page, language) => {
-	const regex = /[{]+\s[A-Za-z0-9]+\s[}]+/g;
-	const keys = page.match(regex).map(key => key.split(' ')[1]);
-	keys.forEach(key => {
-		page = translate(page, key, language);
-	});
-	return page;
+module.exports = {
+	translatePage: (page, language) => {
+		const regex = /[{]+\s[A-Za-z0-9]+\s[}]+/g;
+		const keys = page.match(regex).map(key => key.split(' ')[1]);
+		keys.forEach(key => {
+			page = translate(page, key, language);
+		});
+		return page;
+	}
 };
-
-module.exports = { translatePage };

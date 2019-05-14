@@ -54,7 +54,6 @@ const buildPage = () => {
 	return app;
 };
 
-const view = (res, language = null) => {
+module.exports = (res, language = null) => {
 	res.write(_translateService.translatePage(buildPage(), language));
-};
-module.exports = view;
+};;

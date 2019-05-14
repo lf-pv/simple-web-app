@@ -1,4 +1,4 @@
-const getValues = () => {
+module.exports = () => {
 	return {
 		title: "C'est le lab en français",
 		text: "Oh pinaise",
@@ -8,4 +8,3 @@ const getValues = () => {
 		subComponent: "Un sous-composant sauvage apparait"
 	};
 };
-module.exports = getValues;
