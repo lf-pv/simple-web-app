@@ -18,7 +18,7 @@ const addSignatures = content => {
 	return content;
 };
 
-const repeat = (html, param) => {
+const repeatTag = (html, param) => {
 	const regex = /(<repeat #)[A-Za-z0-9]+(>)[\s\S]*?(<\/repeat>)/gm
 	const keys = html.match(regex);
 	keys.forEach(key => {
@@ -31,6 +31,21 @@ const repeat = (html, param) => {
 		}
 		const bloc = key.split(`<repeat #${val}>`)[1].split('</repeat>')[0];
 		html = _toolService.includeComponent(html, key, arr.reduce((acc, el) => `${acc}${bloc}\n`, ''));
+	})
+	return html;
+};
+
+const ifTag = (html, param) => {
+	const regex = /(<if #)[A-Za-z0-9]+(>)[\s\S]*?(<\/if>)/gm
+	const keys = html.match(regex);
+	keys.forEach(key => {
+		const val = key.match(/(#)[A-Za-z0-9]+(>)/gm)[0].split('#')[1].split('>')[0];
+		const bloc = key.split(`<if #${val}>`)[1].split('</if>')[0];
+		if (val === 'true' || param[val]) {
+			html = _toolService.includeComponent(html, key, bloc);
+		} else {
+			html = _toolService.includeComponent(html, key, '');
+		}
 	})
 	return html;
 };
@@ -65,7 +80,8 @@ const buildPage = (param) => {
 		const f = fs.readFileSync(`./views/components/${c}.html`, "utf8");
 		app = _toolService.includeComponent(app, keys[0], f);
 	}
-	app = repeat(app, param);
+	app = repeatTag(app, param);
+	app = ifTag(app, param);
 	app = addCss(app);
 	app = addScripts(app);
 	app = addSignatures(app);

@@ -18,7 +18,17 @@
         </div>
       </div>
     </repeat>
-    <repeat #2>aa</repeat>
+    <repeat #2><p>repeat with number</p></repeat>
+    <if #testTrue>
+      <p style="color:#528312;">If true : should be displayed</p>
+    </if>
+    <if #testFalse>
+      <p style="color:#cf172f;">If false : should not be displayed</p>
+    </if>
+    <if #true><p style="color:#528312;">If true 2 : should be displayed</p></if>
+    <if #false>
+      <p style="color:#cf172f;">If false 2 : should not be displayed</p>
+    </if>
   </div>
   <app-footer></app-footer>
 </body>

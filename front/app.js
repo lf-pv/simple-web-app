@@ -26,7 +26,7 @@ app.get(['/', '/:language'], (req, res) => {
 	try {
 		const lg = req.params.language;
 		res.writeHead(200, { "Content-Type": "text/html" });
-		builder(res, lg, { loop: 2 });
+		builder(res, lg, { loop: 2, testTrue: true, testFalse: false });
 		res.end();
 	} catch (e) {
 		console.log(chalk.red(e));
