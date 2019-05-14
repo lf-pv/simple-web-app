@@ -7,6 +7,7 @@ const builder = require("./builder/appBuilder");
 
 const app = express();
 app.use(express.static(path.join(__dirname, "/public")));
+app.use(express.static(path.join(__dirname, "/assets")));
 app.use(
 	"/css",
 	express.static(path.join(__dirname, "node_modules/bootstrap/dist/css"))
