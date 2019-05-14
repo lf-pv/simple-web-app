@@ -23,13 +23,14 @@ const repeatTag = (html, param) => {
 	const keys = html.match(regex);
 	keys.forEach(key => {
 		let arr = [0];
-		const val = key.match(/(#)[A-Za-z0-9]+(>)/gm)[0].split('#')[1].split('>')[0];
+		const val = key.match(/(#)[A-Za-z0-9]+(>)/gm)[0].replace(/[#>]/g, '');
 		if (Number.isInteger(Number(val))) {
 			arr = Array.apply(null, { length: Number(val) }).map(Number.call, Number);
 		} else if (param[val]) {
 			arr = Array.apply(null, { length: param[val] }).map(Number.call, Number);
 		}
-		const bloc = key.split(`<repeat #${val}>`)[1].split('</repeat>')[0];
+		const reg = new RegExp(`(<repeat #${val}>|<\/repeat>)`, "g");
+		const bloc = key.replace(reg, '');
 		html = _toolService.includeComponent(html, key, arr.reduce((acc, el) => `${acc}${bloc}\n`, ''));
 	})
 	return html;
@@ -39,8 +40,9 @@ const ifTag = (html, param) => {
 	const regex = /(<if #)[A-Za-z0-9]+(>)[\s\S]*?(<\/if>)/gm
 	const keys = html.match(regex);
 	keys.forEach(key => {
-		const val = key.match(/(#)[A-Za-z0-9]+(>)/gm)[0].split('#')[1].split('>')[0];
-		const bloc = key.split(`<if #${val}>`)[1].split('</if>')[0];
+		const val = key.match(/(#)[A-Za-z0-9]+(>)/gm)[0].replace(/[#>]/g, '');
+		const reg = new RegExp(`(<if #${val}>|<\/if>)`, "g");
+		const bloc = key.replace(reg, '');
 		if (val === 'true' || param[val]) {
 			html = _toolService.includeComponent(html, key, bloc);
 		} else {
