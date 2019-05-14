@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "run": "nodemon back.js",
+    "start": "nodemon back.js",
     "debug": "DEBUG=back nodemon back.js"
   },
   "author": "Loulou",

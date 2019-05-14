@@ -22,7 +22,7 @@ app.use(
 	express.static(path.join(__dirname, "node_modules/bootstrap/dist/js"))
 );
 
-app.get("/:language", (req, res) => {
+app.get(['/', '/:language'], (req, res) => {
 	try {
 		const lg = req.params.language;
 		res.writeHead(200, { "Content-Type": "text/html" });
